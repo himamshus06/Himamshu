@@ -290,6 +290,22 @@ body {
     box-shadow: 0 10px 20px rgba(139, 115, 85, 0.3);
 }
 
+/* Resume button specific styling */
+#resume-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+#resume-btn::before {
+    content: '📄';
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+#resume-btn:hover::before {
+    animation: bounce 0.6s ease;
+}
+
 .hero-scroll {
     position: absolute;
     bottom: 2rem;

@@ -233,8 +233,9 @@ function initResumeButton() {
     
     if (resumeBtn) {
         resumeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showNotification('Resume download will be available soon!', 'info');
+            // Allow the default behavior to download the PDF
+            // No need to prevent default or show notification
+            console.log('Resume download initiated');
         });
     }
 }
