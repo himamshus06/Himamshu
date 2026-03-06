@@ -25,3 +25,12 @@ const firebaseConfig = {
   appId: "1:894999293084:web:6cfec601ac98d585a79159",
   measurementId: "G-81YPZZV12E"
 };
+
+// Only these emails can use dashboard.html
+// Add your email(s) here.
+const DASHBOARD_ADMIN_EMAILS = [
+  "himamshus06@gmail.com"
+];
+
+// Used for name-based checks (Google profile name).
+const DASHBOARD_ADMIN_NAME = "Himamshu S";
