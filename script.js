@@ -40,7 +40,7 @@ function initMobileMenu() {
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        if (hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
@@ -87,7 +87,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Add fade-in class to elements that should animate
-    const animateElements = document.querySelectorAll('.skill-item, .experience-item, .education-item, .certification-item, .contact-item, .about-content, .section-header');
+    const animateElements = document.querySelectorAll('.exp-item, .edu-item, .cert-item, .contact-card, .about-text, .section-title, .skill-tag');
     
     animateElements.forEach(el => {
         el.classList.add('fade-in');
@@ -252,13 +252,13 @@ function initScrollToTop() {
         right: 30px;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #8B7355, #A8C09A);
+        background: #C45C2A;
         color: white;
         border: none;
         border-radius: 50%;
         cursor: pointer;
         font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        box-shadow: 0 4px 12px rgba(196, 92, 42, 0.3);
         opacity: 0;
         visibility: hidden;
         transform: translateY(20px);
@@ -292,40 +292,16 @@ function initScrollToTop() {
     // Hover effects
     scrollToTopBtn.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-3px)';
-        this.style.boxShadow = '0 6px 20px rgba(139, 115, 85, 0.4)';
+        this.style.boxShadow = '0 6px 20px rgba(196, 92, 42, 0.4)';
     });
     
     scrollToTopBtn.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 4px 12px rgba(139, 115, 85, 0.3)';
+        this.style.boxShadow = '0 4px 12px rgba(196, 92, 42, 0.3)';
     });
 }
 
-// Skill items hover effects
-document.addEventListener('DOMContentLoaded', function() {
-    const skillItems = document.querySelectorAll('.skill-item');
-    
-    skillItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
 
-// Parallax effect for hero section
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    
-    if (hero) {
-        const rate = scrolled * -0.5;
-        hero.style.transform = `translateY(${rate}px)`;
-    }
-});
 
 // Typing effect for hero title (optional enhancement)
 function initTypingEffect() {

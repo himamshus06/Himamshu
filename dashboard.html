@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Dashboard — Himamshu S</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-sliders-h"></i> Portfolio Dashboard</h1>
+            <div class="header-actions">
+                <a href="index.html" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> View Site</a>
+                <button type="button" class="btn btn-danger" id="reset-btn">Reset to Defaults</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Hero -->
+            <section class="card" data-section="hero">
+                <h2><i class="fas fa-user"></i> Hero</h2>
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Name</label>
+                        <input type="text" id="hero-name" data-field="hero.name">
+                    </div>
+                    <div class="field full">
+                        <label>Tagline</label>
+                        <input type="text" id="hero-tagline" data-field="hero.tagline">
+                    </div>
+                    <div class="field">
+                        <label>Location</label>
+                        <input type="text" id="hero-location" data-field="hero.location">
+                    </div>
+                    <div class="field">
+                        <label>Resume URL</label>
+                        <input type="text" id="hero-resume" data-field="hero.resumeUrl">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="card" data-section="summary">
+                <h2><i class="fas fa-align-left"></i> Summary</h2>
+                <div class="field">
+                    <label>About text</label>
+                    <textarea id="summary-text" data-field="summary" rows="5"></textarea>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="card" data-section="contact">
+                <h2><i class="fas fa-address-book"></i> Contact</h2>
+                <div class="list-items" id="contact-list"></div>
+                <button type="button" class="btn btn-add" id="add-contact"><i class="fas fa-plus"></i> Add Contact</button>
+            </section>
+
+            <!-- Skills -->
+            <section class="card" data-section="skills">
+                <h2><i class="fas fa-star"></i> Top Skills</h2>
+                <div class="skills-editor">
+                    <div class="field">
+                        <label>Skills (comma-separated)</label>
+                        <input type="text" id="skills-top" data-field="skills.top" placeholder="Leadership, Event Planning, Anchoring">
+                    </div>
+                </div>
+                <h3>Languages</h3>
+                <div class="field">
+                    <label>Languages (comma-separated)</label>
+                    <input type="text" id="skills-languages" data-field="skills.languages" placeholder="Hindi (Native), Kannada (Native), English (Native)">
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="card" data-section="experience">
+                <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                <div class="list-items" id="experience-list"></div>
+                <button type="button" class="btn btn-add" id="add-experience"><i class="fas fa-plus"></i> Add Experience</button>
+            </section>
+
+            <!-- Education -->
+            <section class="card" data-section="education">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="form-grid">
+                    <div class="field full">
+                        <label>Degree</label>
+                        <input type="text" id="edu-degree" data-field="education.degree">
+                    </div>
+                    <div class="field">
+                        <label>School</label>
+                        <input type="text" id="edu-school" data-field="education.school">
+                    </div>
+                    <div class="field">
+                        <label>Period</label>
+                        <input type="text" id="edu-period" data-field="education.period">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications -->
+            <section class="card" data-section="certifications">
+                <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                <div class="list-items" id="certifications-list"></div>
+                <button type="button" class="btn btn-add" id="add-certification"><i class="fas fa-plus"></i> Add Certification</button>
+            </section>
+
+            <!-- Footer -->
+            <section class="card" data-section="footer">
+                <h2><i class="fas fa-link"></i> Footer Links</h2>
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Year</label>
+                        <input type="number" id="footer-year" data-field="footer.year">
+                    </div>
+                    <div class="field">
+                        <label>LinkedIn URL</label>
+                        <input type="url" id="footer-linkedin" data-field="footer.linkedin">
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input type="email" id="footer-email" data-field="footer.email">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <!-- Contact item template (hidden) -->
+    <template id="contact-item-tpl">
+        <div class="list-item" data-index="">
+            <select class="contact-type">
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="website">Website</option>
+            </select>
+            <input type="text" class="contact-value" placeholder="Value">
+            <input type="text" class="contact-label" placeholder="Display label">
+            <button type="button" class="btn-icon btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+        </div>
+    </template>
+
+    <!-- Experience item template -->
+    <template id="experience-item-tpl">
+        <div class="list-item exp-item-editor" data-index="">
+            <input type="text" class="exp-title" placeholder="Job title">
+            <input type="text" class="exp-meta" placeholder="Company · Period">
+            <textarea class="exp-desc" placeholder="Description (optional)" rows="3"></textarea>
+            <input type="text" class="exp-bullets" placeholder="Bullet points (one per line, optional)">
+            <button type="button" class="btn-icon btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+        </div>
+    </template>
+
+    <script src="firebase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="data-store.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

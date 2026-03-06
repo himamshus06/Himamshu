@@ -3,45 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himamshu S - Front-End Web Developer</title>
+    <title>Himamshu S — Technical Secretary | Front-End Developer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
-    <!-- Header / Navbar -->
     <header class="header" id="header">
         <nav class="navbar">
             <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="#home">Himamshu S</a>
-                </div>
+                <a href="#home" class="nav-logo">Himamshu S</a>
                 <ul class="nav-menu" id="nav-menu">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#skills" class="nav-link">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#experience" class="nav-link">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#education" class="nav-link">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#certifications" class="nav-link">Certifications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-                <div class="hamburger" id="hamburger">
+                <div class="hamburger" id="hamburger" aria-label="Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -50,297 +31,168 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-image">
-                    <img src="profile-picture.jpeg" alt="Himamshu S - Front-End Web Developer" class="profile-img">
-                    <div class="image-overlay"></div>
-                </div>
-                <h1 class="hero-title">
-                    <span class="hero-main">Front-End Web Developer</span>
-                    <span class="hero-sub">PWA Developer | Public Speaker | Hobbyist Filmmaker | Fast Learner</span>
-                </h1>
-                <p class="hero-description">
-                    Passionate about crafting elegant, responsive, and user-focused websites.
-                </p>
-                <div class="hero-location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Mangaluru, Karnataka, India</span>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Let's Connect</a>
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <h1 class="hero-name">Himamshu S</h1>
+                <p class="hero-tagline">Technical Secretary at Canara Engineering College | Front-end Web Dev; Learning FSD, DevOps | Public Speaker, Fast Learner, Open to Growth.</p>
+                <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Mangaluru, Karnataka, India</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
                     <a href="resume.pdf" class="btn btn-secondary" id="resume-btn">View Resume</a>
                 </div>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <a href="#about" class="scroll-down">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </section>
+            <a href="#about" class="scroll-indicator" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+        </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-line"></div>
+        <!-- Summary / About -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title">Summary</h2>
+                <p class="about-text">I'm a natural leader with strong communication skills and fluency in three languages, including English. I'm deeply curious, and I learn best by building and applying what I study. As an engineering student and budding developer, I focus on turning ideas into real, functional products rather than just theories.</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-bio">
-                        I'm a passionate Front-End Web Developer and a PWA developer with strong communication skills, 
-                        excellent command of English, and a flair for literary expression. I love crafting elegant, 
-                        responsive, and user-focused websites using HTML, CSS, and JavaScript, and I'm steadily 
-                        building my skills in backend technologies as well.
-                    </p>
-                    <p class="about-traits">
-                        As a fast learner, I'm adaptable, creative, and always open to new collaborations and 
-                        opportunities to grow in the tech community.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="skills-content">
-                <div class="skills-category">
-                    <h3 class="skills-category-title">Top Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <span class="skill-name">Cryptography</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <span class="skill-name">Database Management System (DBMS)</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <span class="skill-name">SQL</span>
-                        </div>
-                    </div>
+        <!-- Skills -->
+        <section class="skills" id="skills">
+            <div class="container">
+                <h2 class="section-title">Top Skills</h2>
+                <div class="skills-row">
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Event Planning</span>
+                    <span class="skill-tag">Anchoring</span>
                 </div>
-                <div class="skills-category">
-                    <h3 class="skills-category-title">Web Development</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-html5"></i>
-                            </div>
-                            <span class="skill-name">HTML</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-css3-alt"></i>
-                            </div>
-                            <span class="skill-name">CSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-js-square"></i>
-                            </div>
-                            <span class="skill-name">JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <span class="skill-name">PWA Development</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3 class="skills-category-title">Soft Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <span class="skill-name">Communication</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <span class="skill-name">Mentorship</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <span class="skill-name">Event Organization</span>
-                        </div>
-                    </div>
+                <h2 class="section-title section-title-sub">Languages</h2>
+                <div class="skills-row">
+                    <span class="skill-tag">Hindi (Native or Bilingual)</span>
+                    <span class="skill-tag">Kannada (Native or Bilingual)</span>
+                    <span class="skill-tag">English (Native or Bilingual)</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header">
+        <!-- Experience -->
+        <section class="experience" id="experience">
+            <div class="container">
                 <h2 class="section-title">Experience</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="experience-content">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Core Committee Member</h3>
-                        <span class="experience-company">Canara Students – Open Source Community</span>
-                        <span class="experience-period">Sep 2025 – Present</span>
-                        <span class="experience-location">Mangaluru</span>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Event management & coordination: planned workshops, seminars, training</li>
-                            <li>Mentorship & knowledge sharing: trained juniors, led sessions, guided open-source contributions</li>
-                            <li>Contest & talk organization: coding contests, expert talks, industry learning</li>
+                <div class="experience-list">
+                    <article class="exp-item">
+                        <div class="exp-header">
+                            <h3>Technical Secretary</h3>
+                            <span class="exp-meta">Canara Engineering College · Feb 2026 – Present (2 months)</span>
+                        </div>
+                    </article>
+                    <article class="exp-item">
+                        <div class="exp-header">
+                            <h3>Member of Technical Activity Cell</h3>
+                            <span class="exp-meta">Canara Engineering College · Sep 2025 – Present (7 months)</span>
+                        </div>
+                        <p class="exp-desc">As a member of the Technical Committee, I actively contribute to the planning, organization, and execution of technical events within the college. My role involves close collaboration with other office bearers to conceptualize, coordinate, and successfully conduct workshops, hackathons, and competitions. I also manage essential documentation and official paperwork related to event proposals, budgets, and reports, ensuring smooth administrative functioning. Through this role, I have strengthened my teamwork, event management, and organizational skills while fostering a culture of innovation and technical growth among students.</p>
+                    </article>
+                    <article class="exp-item">
+                        <div class="exp-header">
+                            <h3>Member of Training Committee</h3>
+                            <span class="exp-meta">Canara Engineering College · Sep 2025 – Present (7 months)</span>
+                        </div>
+                    </article>
+                    <article class="exp-item">
+                        <div class="exp-header">
+                            <h3>Club Advisor</h3>
+                            <span class="exp-meta">Gavel Club of Canara Engineering College · Jan 2026 – Present (3 months)</span>
+                        </div>
+                    </article>
+                    <article class="exp-item">
+                        <div class="exp-header">
+                            <h3>Core Committee Member</h3>
+                            <span class="exp-meta">Canara Students – Open Source Community · Mangaluru · Sep 2025 – Present (7 months)</span>
+                        </div>
+                        <p class="exp-desc">As a core committee member, I play a key role in fostering a vibrant open-source culture and enhancing technical skills among my peers. My responsibilities include:</p>
+                        <ul class="exp-list">
+                            <li><strong>Event Management & Coordination</strong> — Planning and executing technical and skill enhancement events, including workshops, seminars, and training sessions. Coordinating with team members, speakers, and faculty to ensure seamless and impactful events.</li>
+                            <li><strong>Mentorship & Knowledge Sharing</strong> — Acting as a resource person for juniors, providing training and mentorship on various technical topics. Leading sessions and offering guidance to help them navigate their learning journeys and contribute to open-source projects.</li>
+                            <li><strong>Contest & Talk Organization</strong> — Organizing technical contests and talks, designing challenges for coding competitions and securing speakers for expert talks. These events provide a platform for students to test their abilities, learn from industry professionals, and engage in healthy competition.</li>
                         </ul>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Education Section -->
-    <section class="education" id="education">
-        <div class="container">
-            <div class="section-header">
+        <!-- Education -->
+        <section class="education" id="education">
+            <div class="container">
                 <h2 class="section-title">Education</h2>
-                <div class="section-line"></div>
+                <article class="edu-item">
+                    <h3>Bachelor of Engineering — BE, Computer Science</h3>
+                    <p class="edu-school">Canara Engineering College</p>
+                    <p class="edu-period">September 2024 – September 2028</p>
+                </article>
             </div>
-            <div class="education-content">
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">Bachelor of Engineering – BE, Computer Science</h3>
-                        <span class="education-school">Canara Engineering College</span>
-                        <span class="education-period">Sep 2024 – Sep 2028</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certifications Section -->
-    <section class="certifications" id="certifications">
-        <div class="container">
-            <div class="section-header">
+        <!-- Certifications -->
+        <section class="certifications" id="certifications">
+            <div class="container">
                 <h2 class="section-title">Certifications</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="certifications-content">
-                <div class="certification-item">
-                    <div class="certification-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <div class="certification-details">
-                        <h3 class="certification-title">Database Management System</h3>
-                    </div>
-                </div>
-                <div class="certification-item">
-                    <div class="certification-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="certification-details">
-                        <h3 class="certification-title">Cryptography: Technologies for Securing Data and Communications</h3>
-                    </div>
+                <div class="cert-list">
+                    <div class="cert-item">Data Base Management System</div>
+                    <div class="cert-item">Cryptography: Technologies for Securing Data and Communications</div>
+                    <div class="cert-item">Artificial Intelligence Essentials</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <a href="mailto:himamshus06@gmail.com">himamshus06@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <a href="tel:7259680026">7259680026</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>LinkedIn</h3>
-                            <a href="https://linkedin.com/in/himamshu-s-886b35301" target="_blank">linkedin.com/in/himamshu-s-886b35301</a>
-                        </div>
-                    </div>
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-grid">
+                    <a href="tel:7259680026" class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <span>7259680026</span>
+                    </a>
+                    <a href="mailto:himamshus06@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <span>himamshus06@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/himamshus-886b35301" target="_blank" rel="noopener" class="contact-card">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://himamshus06.github.io/Himamshu/" target="_blank" rel="noopener" class="contact-card" title="himamshus06.github.io/Himamshu/">
+                        <i class="fas fa-globe"></i>
+                        <span>Personal Site</span>
+                    </a>
                 </div>
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="from_name" name="from_name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="from_email" name="from_email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
+                <div class="contact-form-wrap">
+                    <h3 class="contact-form-title">Get In Touch</h3>
+                    <form id="contact-form" class="contact-form">
+                        <input type="text" id="from_name" name="from_name" placeholder="Your Name" required>
+                        <input type="email" id="from_email" name="from_email" placeholder="Your Email" required>
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2025 Himamshu S. All rights reserved.</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/in/himamshu-s-886b35301" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:himamshus06@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+            <p>&copy; 2026 Himamshu S</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/himamshus-886b35301" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:himamshus06@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="dashboard.html" class="dashboard-link" title="Edit portfolio"><i class="fas fa-cog"></i></a>
             </div>
         </div>
     </footer>
 
+    <script src="firebase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="data-store.js"></script>
+    <script src="index-loader.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
