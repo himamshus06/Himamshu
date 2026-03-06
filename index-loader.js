@@ -2,6 +2,7 @@
  * Loads portfolio content from Firebase/localStorage and updates the DOM.
  */
 (function () {
+  let currentResumeObjectUrl = null;
   function escapeHtml(str) {
     if (!str) return '';
     const div = document.createElement('div');
@@ -33,7 +34,34 @@
     if (heroLocation) {
       heroLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${escapeHtml(data.hero.location)}`;
     }
-    if (resumeBtn && data.hero.resumeUrl) resumeBtn.href = data.hero.resumeUrl;
+    if (resumeBtn) {
+      // Prefer embedded PDF if available, otherwise use URL.
+      if (data.hero.resumeBase64) {
+        try {
+          const byteCharacters = atob(data.hero.resumeBase64);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          }
+          const byteArray = new Uint8Array(byteNumbers);
+          const blob = new Blob([byteArray], { type: 'application/pdf' });
+          if (currentResumeObjectUrl) {
+            URL.revokeObjectURL(currentResumeObjectUrl);
+          }
+          currentResumeObjectUrl = URL.createObjectURL(blob);
+          resumeBtn.href = currentResumeObjectUrl;
+          resumeBtn.target = '_blank';
+          resumeBtn.rel = 'noopener';
+        } catch (e) {
+          // Fallback to URL if decoding fails
+          if (data.hero.resumeUrl) {
+            resumeBtn.href = data.hero.resumeUrl;
+          }
+        }
+      } else if (data.hero.resumeUrl) {
+        resumeBtn.href = data.hero.resumeUrl;
+      }
+    }
     if (navLogo) navLogo.textContent = data.hero.name;
 
     // Summary

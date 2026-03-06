@@ -10,7 +10,9 @@ const DEFAULT_DATA = {
     name: 'Himamshu S',
     tagline: 'Technical Secretary at Canara Engineering College | Front-end Web Dev; Learning FSD, DevOps | Public Speaker, Fast Learner, Open to Growth.',
     location: 'Mangaluru, Karnataka, India',
-    resumeUrl: 'resume.pdf'
+    resumeUrl: 'resume.pdf',
+    resumeFileName: '',
+    resumeBase64: ''
   },
   summary: "I'm a natural leader with strong communication skills and fluency in three languages, including English. I'm deeply curious, and I learn best by building and applying what I study. As an engineering student and budding developer, I focus on turning ideas into real, functional products rather than just theories.",
   contact: [

@@ -54,6 +54,31 @@
         });
       }
     });
+
+    const resumeFileInput = document.getElementById('hero-resume-file');
+    if (resumeFileInput) {
+      resumeFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        if (file.type !== 'application/pdf') {
+          showToast('Please upload a PDF file.');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result;
+          const base64 = typeof result === 'string' ? result.split(',')[1] : '';
+          if (!base64) {
+            showToast('Failed to read PDF.');
+            return;
+          }
+          data.hero.resumeFileName = file.name;
+          data.hero.resumeBase64 = base64;
+          save();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
   }
 
   // Summary
@@ -278,10 +303,25 @@
     }
   });
 
-  // Init - load from Firebase/localStorage then bind
-  async function init() {
+  function isAdminEmail(email) {
+    if (!email) return false;
+    const list = Array.isArray(DASHBOARD_ADMIN_EMAILS) ? DASHBOARD_ADMIN_EMAILS : [];
+    return list.map((e) => String(e).toLowerCase()).includes(String(email).toLowerCase());
+  }
+
+  function setAuthedUi(isAuthed) {
+    const authSection = document.getElementById('auth');
     const main = document.querySelector('.dashboard-main');
-    if (main) main.style.opacity = '0.5';
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (authSection) authSection.style.display = isAuthed ? 'none' : 'block';
+    if (main) main.style.display = isAuthed ? 'block' : 'none';
+    if (logoutBtn) logoutBtn.style.display = isAuthed ? 'inline-flex' : 'none';
+  }
+
+  async function initDataAndBind() {
+    const main = document.querySelector('.dashboard-main');
+    if (main) main.style.opacity = '0.6';
     try {
       data = await DataStore.get();
       bindAll();
@@ -293,9 +333,71 @@
     if (main) main.style.opacity = '1';
   }
 
+  async function initAuth() {
+    if (typeof firebase === 'undefined' || typeof firebaseConfig === 'undefined') {
+      setAuthedUi(false);
+      showToast('Firebase not available');
+      return;
+    }
+
+    try {
+      try {
+        firebase.app();
+      } catch (_) {
+        firebase.initializeApp(firebaseConfig);
+      }
+    } catch (e) {
+      setAuthedUi(false);
+      showToast('Firebase init failed');
+      return;
+    }
+
+    const auth = firebase.auth();
+    const googleBtn = document.getElementById('google-signin-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (googleBtn) {
+      googleBtn.addEventListener('click', async () => {
+        try {
+          googleBtn.disabled = true;
+          const provider = new firebase.auth.GoogleAuthProvider();
+          provider.setCustomParameters({ prompt: 'select_account' });
+          await auth.signInWithPopup(provider);
+        } catch (e) {
+          showToast('Google sign-in failed');
+        } finally {
+          googleBtn.disabled = false;
+        }
+      });
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          await auth.signOut();
+          showToast('Logged out');
+        } catch (e) {
+          showToast('Logout failed');
+        }
+      });
+    }
+
+    auth.onAuthStateChanged(async (user) => {
+      const ok = !!user && isAdminEmail(user.email);
+      setAuthedUi(ok);
+      if (ok) {
+        await initDataAndBind();
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+      setAuthedUi(false);
+      initAuth();
+    });
   } else {
-    init();
+    setAuthedUi(false);
+    initAuth();
   }
 })();
