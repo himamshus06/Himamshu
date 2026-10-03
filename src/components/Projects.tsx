@@ -4,6 +4,8 @@ import { portfolio } from '../data/portfolio'
 import { ExternalLink, Github } from 'lucide-react'
 
 const Projects: React.FC = () => {
+  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+
   return (
     <section id="projects" className="py-24 px-6 bg-dark-surface relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
@@ -36,13 +38,16 @@ const Projects: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
+              transition={{
+                delay: isMobile ? index * 0.1 : index * 0.2,
+                duration: 0.8
+              }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="group relative p-8 bg-dark-bg border border-dark-accent/10 rounded-3xl overflow-hidden"
+              whileHover={isMobile ? {} : { y: -10 }}
+              className="group relative p-8 bg-dark-bg border border-dark-accent/10 rounded-3xl overflow-hidden will-change-transform"
             >
-              {/* Background Glow */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-dark-accent/10 blur-3xl group-hover:bg-dark-accent/20 transition-colors" />
+              {/* Background Glow - Hidden on Mobile for performance */}
+              <div className="hidden md:block absolute top-0 right-0 w-32 h-32 bg-dark-accent/10 blur-3xl group-hover:bg-dark-accent/20 transition-colors" />
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6">

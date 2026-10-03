@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Lenis from 'lenis'
+import { isMobile } from '../utils/device'
 
 interface SmoothScrollProps {
   children: React.ReactNode
@@ -7,6 +8,9 @@ interface SmoothScrollProps {
 
 const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   useEffect(() => {
+    // Disable Lenis on mobile for native momentum scrolling
+    if (isMobile()) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

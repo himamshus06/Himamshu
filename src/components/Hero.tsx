@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { portfolio } from '../data/portfolio'
 import { ArrowDown } from 'lucide-react'
+import { isMobile } from '../utils/device'
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -19,19 +20,21 @@ const Hero: React.FC = () => {
         delay: 0.2
       })
 
-      // Subtle parallax on background elements
-      window.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e
-        const xPos = (clientX / window.innerWidth - 0.5) * 20
-        const yPos = (clientY / window.innerHeight - 0.5) * 20
+      // Parallax on background elements - Disabled on Mobile
+      if (!isMobile()) {
+        window.addEventListener('mousemove', (e) => {
+          const { clientX, clientY } = e
+          const xPos = (clientX / window.innerWidth - 0.5) * 20
+          const yPos = (clientY / window.innerHeight - 0.5) * 20
 
-        gsap.to('.hero-bg-element', {
-          x: xPos,
-          y: yPos,
-          duration: 1,
-          ease: 'power2.out'
+          gsap.to('.hero-bg-element', {
+            x: xPos,
+            y: yPos,
+            duration: 1,
+            ease: 'power2.out'
+          })
         })
-      })
+      }
     }, containerRef)
 
     return () => ctx.revert()
@@ -45,9 +48,9 @@ const Hero: React.FC = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="hero-bg-element absolute top-1/4 left-1/4 w-64 h-64 bg-dark-accent/10 rounded-full blur-[100px]" />
-        <div className="hero-bg-element absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
+        <div className="hero-bg-element absolute top-1/4 left-1/4 w-64 h-64 bg-dark-accent/10 rounded-full blur-[40px] md:blur-[100px]" />
+        <div className="hero-bg-element absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[40px] md:blur-[120px]" />
+        <div className="hidden md:block absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
       </div>
 
       <div className="relative z-10 text-center px-6">

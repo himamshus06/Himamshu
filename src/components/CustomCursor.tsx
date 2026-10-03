@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { motion, useSpring, useMotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { isMobile } from '../utils/device'
 
 const CustomCursor: React.FC = () => {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
+  if (isMobile()) return null;
 
-  const springConfig = { damping: 25, stiffness: 700 }
-  const cursorX = useSpring(mouseX, springConfig)
-  const cursorY = useSpring(mouseY, springConfig)
-
+  const [mouseX, setMouseX] = useState(0)
+  const [mouseY, setMouseY] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX)
-      mouseY.set(e.clientY)
+      setMouseX(e.clientX)
+      setMouseY(e.clientY)
     }
 
     const handleOver = (e: MouseEvent) => {
@@ -31,17 +30,18 @@ const CustomCursor: React.FC = () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseover', handleOver)
     }
-  }, [mouseX, mouseY])
+  }, [])
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 rounded-full border border-dark-accent pointer-events-none z-[9999] mix-blend-difference flex items-center justify-center"
-      style={{
-        x: cursorX,
-        y: cursorY,
+      className="fixed top-0 left, rounded-full border border-dark-accent pointer-events-none z-[9999] mix-blend-difference flex items-center justify-center w-6 h-6"
+      animate={{
+        x: mouseX,
+        y: mouseY,
         translateX: '-50%',
         translateY: '-50%',
       }}
+      transition={{ type: 'spring', damping: 25, stiffness: 700 }}
     >
       {isHovering && (
         <motion.div

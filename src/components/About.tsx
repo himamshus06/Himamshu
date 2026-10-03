@@ -1,9 +1,10 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { portfolio } from '../data/portfolio'
 
 const About: React.FC = () => {
   const text = portfolio.profile.about
+  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
   return (
     <section id="about" className="py-24 px-6 bg-dark-bg relative overflow-hidden">
@@ -23,7 +24,10 @@ const About: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{
+                delay: 0.2,
+                duration: isMobile ? 0.5 : 0.8
+              }}
               viewport={{ once: true }}
               className="text-lg text-dark-muted leading-relaxed space-y-6"
             >
@@ -46,22 +50,20 @@ const About: React.FC = () => {
 
           <div className="w-full md:w-1/2 relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: isMobile ? 1 : 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
               className="aspect-square rounded-3xl bg-dark-surface border border-dark-accent/20 overflow-hidden relative group"
             >
-              {/* Placeholder for Profile Image */}
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark-accent/20 to-transparent">
                 <img
                   src="/profile.jpg"
                   alt="Himamshu Sharma"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
-
-              {/* Decorative elements */}
               <div className="absolute top-4 right-4 w-12 h-12 border border-dark-accent/30 rounded-full animate-pulse" />
               <div className="absolute bottom-4 left-4 w-8 h-8 border border-dark-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
             </motion.div>

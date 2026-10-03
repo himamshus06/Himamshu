@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { portfolio } from '../data/portfolio'
+import { isMobile } from '../utils/device'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,32 +13,49 @@ const Experience: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate the timeline line
-      gsap.fromTo(
-        lineRef.current,
-        { scaleY: 0 },
-        {
+      const mobile = isMobile();
+
+      if (mobile) {
+        // Simple reveal for mobile instead of scrub
+        gsap.to(lineRef.current, {
           scaleY: 1,
-          ease: 'none',
+          duration: 1.5,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: timelineRef.current,
             start: 'top center',
-            end: 'bottom center',
-            scrub: true,
+            toggleActions: 'play none none reverse',
           },
-        }
-      )
+        })
+      } else {
+        // Premium scrub for desktop
+        gsap.fromTo(
+          lineRef.current,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: 'top center',
+              end: 'bottom center',
+              scrub: true,
+            },
+          },
+        )
+      }
 
       // Animate experience cards
       const cards = gsap.utils.toArray('.experience-card')
       cards.forEach((card: any, i: number) => {
         gsap.from(card, {
           opacity: 0,
-          x: i % 2 === 0 ? -50 : 50,
+          x: mobile ? 0 : (i % 2 === 0 ? -50 : 50),
+          y: mobile ? 30 : 0,
           duration: 0.8,
           scrollTrigger: {
             trigger: card,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none reverse',
           },
         })
@@ -76,7 +94,7 @@ const Experience: React.FC = () => {
             {portfolio.experience.map((exp, index) => (
               <div key={index} className={`flex flex-col md:flex-row items-center justify-between gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Content */}
-                <div className="experience-card w-full md:w-5/12 p-6 bg-dark-surface border border-dark-accent/10 rounded-3xl hover:border-dark-accent/30 transition-colors group">
+                <div className="experience-card w-full md:w-5/12 p-6 bg-dark-surface border border-dark-accent/10 rounded-3xl hover:border-dark-accent/30 transition-colors group will-change-transform">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-dark-text group-hover:text-dark-accent transition-colors">
                       {exp.role}

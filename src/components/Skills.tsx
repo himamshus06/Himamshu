@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { portfolio } from '../data/portfolio'
 
 const Skills: React.FC = () => {
+  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+
   return (
     <section id="skills" className="py-24 px-6 bg-dark-bg relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -27,7 +29,10 @@ const Skills: React.FC = () => {
               key={category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
+              transition={{
+                delay: isMobile ? index * 0.1 : index * 0.1,
+                duration: 0.8
+              }}
               viewport={{ once: true }}
               className="p-8 bg-dark-surface border border-dark-accent/10 rounded-3xl"
             >
@@ -38,7 +43,7 @@ const Skills: React.FC = () => {
                 {skills.map((skill, i) => (
                   <motion.span
                     key={i}
-                    whileHover={{ scale: 1.1, color: '#00f2ff' }}
+                    whileHover={isMobile ? {} : { scale: 1.1, color: '#00f2ff' }}
                     className="text-sm px-4 py-2 bg-dark-bg border border-dark-accent/20 text-dark-muted rounded-xl cursor-default transition-colors"
                   >
                     {skill}
