@@ -28,7 +28,7 @@ export const portfolio = {
     {
       company: "Canara Engineering College",
       role: "Technical Secretary",
-      duration: "Jul 2025 – Present",
+      duration: "Jul 2025 – Sep 2026",
       description: "Leading technical initiatives and managing student-led technical activities.",
       highlights: [
         "Coordinating technical events and workshops for the student body",
