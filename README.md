@@ -1,2 +1,0 @@
-# Himamshu
-My personal portfolio
