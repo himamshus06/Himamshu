@@ -54,10 +54,11 @@ const About: React.FC = () => {
             >
               {/* Placeholder for Profile Image */}
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark-accent/20 to-transparent">
-                <span className="text-dark-muted opacity-50 text-center px-6 italic">
-                  Image would go here <br />
-                  (Himamshu's Professional Photo)
-                </span>
+                <img
+                  src="/profile.jpg"
+                  alt="Himamshu Sharma"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Decorative elements */}
