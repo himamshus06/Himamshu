@@ -58,7 +58,7 @@ const About: React.FC = () => {
             >
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark-accent/20 to-transparent">
                 <img
-                  src="/profile.jpg"
+                  src="/profile.jpeg"
                   alt="Himamshu Sharma"
                   className="w-full h-full object-cover"
                   loading="lazy"
