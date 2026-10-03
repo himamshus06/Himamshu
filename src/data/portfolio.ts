@@ -7,7 +7,7 @@ export const portfolio = {
     email: "himamshus06@gmail.com",
     phone: "+91 725-968-0026",
     location: "Mangalore, Karnataka, India",
-    linkedin: "https://linkedin.com/in/himamshu-s-886635301",
+    linkedin: "https://www.linkedin.com/in/himamshu-s-886b35301/",
     github: "https://github.com/himamshus06",
     leetcode: "https://leetcode.com/himamshus06",
     website: "#",
